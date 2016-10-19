@@ -1,0 +1,24 @@
+{
+  "name": "dankal/dk-alidayu",
+  "description": "阿里大鱼短信发送",
+  "keywords": [
+    "dankal",
+    "alidayu"
+  ],
+  "homepage": "https://github.com/xxxx",
+  "authors": [
+    {
+      "name": "fio",
+      "homepage": "http://www.dankal.cn",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dankal\\DkAlidayu\\": "src"
+    }
+  }
+}
