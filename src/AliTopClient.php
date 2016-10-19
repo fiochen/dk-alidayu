@@ -176,14 +176,14 @@ class AliTopClient
             $resp = $this->curl($requestUrl, $apiParams);
         } catch (\Exception $e) {
             $result = [
-                'result' => [
-                    'err_code' => $e->getCode(),
+                'error_response' => [
+                    'code' => $e->getCode(),
                     'msg'=> $e->getMessage(),
-                    'success' => 'false',
-                    'model' => '0'
+                    'sub_code' => "curl_error",
+                    'sub_msg' => '请求失败',
+                    'request_id' => '0'
                 ]
             ];
-
             return $result;
         }
 
@@ -193,11 +193,12 @@ class AliTopClient
         $respArray = json_decode($resp, true);
         if (empty($respArray)) {
             $result = [
-                'result' => [
-                    'err_code' => '1',
+                'error_response' => [
+                    'code' => '1',
                     'msg'=> "HTTP_RESPONSE_NOT_WELL_FORMED",
-                    'success' => 'false',
-                    'model' => '0'
+                    'sub_code' => "HTTP_RESPONSE_NOT_WELL_FORMED",
+                    'sub_msg' => '服务器返回格式错误',
+                    'request_id' => '0'
                 ]
             ];
 
