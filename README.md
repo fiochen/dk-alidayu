@@ -1,6 +1,9 @@
 # dk-alidayu
 
-阿里大于短信sdk
+阿里大于短信 sdk
+
+## NOTICE
+迁移至阿里云后的短信服务不适用该 sdk ，请使用 dankal/dk-ali-sms
 
 ## Install
 

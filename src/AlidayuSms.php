@@ -21,8 +21,8 @@ class AlidayuSms
     protected $templateCode;
     protected $smsParam; // must be array, example: ["code" => "1234", "product" => "dk"]
 
-    protected $errorCode;
-    protected $errorMessage;
+    protected $errorCode = '';
+    protected $errorMessage = '';
 
     const SMS_TYPE = 'normal';
     const RESPONSE_KEY_SUCCESS = 'alibaba_aliqin_fc_sms_num_send_response';
@@ -91,8 +91,14 @@ class AlidayuSms
             $result = true;
         } else {
             if (isset($respArray[self::RESPONSE_KEY_FAIL])) {
-                $this->errorCode = $respArray[self::RESPONSE_KEY_FAIL]['sub_code'];
-                $this->errorMessage = $respArray[self::RESPONSE_KEY_FAIL]['sub_msg'];
+                if (isset($respArray[self::RESPONSE_KEY_FAIL]['code'])) {
+                    $this->errorCode = $respArray[self::RESPONSE_KEY_FAIL]['code'];
+                    $this->errorMessage = $respArray[self::RESPONSE_KEY_FAIL]['msg'];
+                }
+                if (isset($respArray[self::RESPONSE_KEY_FAIL]['sub_code'])) {
+                    $this->errorCode = $respArray[self::RESPONSE_KEY_FAIL]['sub_code'];
+                    $this->errorMessage = $respArray[self::RESPONSE_KEY_FAIL]['sub_msg'];
+                }
             }
             $result = false;
         }
